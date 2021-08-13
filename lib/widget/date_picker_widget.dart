@@ -208,7 +208,6 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
                 itemExtent: widget.pickerTheme!.itemHeight,
                 onSelectedItemChanged: valueChanged,
                 looping: widget.looping,
-                useMagnifier: false,
                 children: List<Widget>.generate(
                   valueRange.last - valueRange.first + 1,
                   (index) {

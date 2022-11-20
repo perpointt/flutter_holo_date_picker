@@ -1,25 +1,56 @@
 import 'dart:math';
 
 part 'strings_ar.dart';
+
 part 'strings_bn.dart';
+
 part 'strings_de.dart';
+
 part 'strings_en_us.dart';
+
 part 'strings_es.dart';
+
 part 'strings_he.dart';
+
 part 'strings_hu.dart';
+
 part 'strings_id.dart';
+
 part 'strings_it.dart';
+
 part 'strings_jp.dart';
+
 part 'strings_ko.dart';
+
 part 'strings_no_nb.dart';
+
 part 'strings_no_nn.dart';
+
 part 'strings_pt_br.dart';
+
 part 'strings_ro.dart';
+
 part 'strings_ru.dart';
+
 part 'strings_tr.dart';
+
 part 'strings_zh_cn.dart';
+
 part 'strings_fr.dart';
+
 part 'strings_th.dart';
+
+part 'strings_lt.dart';
+
+part 'strings_nl.dart';
+
+part 'strings_ht.dart';
+
+part 'strings_sv.dart';
+
+part 'strings_cz.dart';
+
+part 'strings_pl.dart';
 
 abstract class _StringsI18n {
   const _StringsI18n();
@@ -100,6 +131,24 @@ enum DateTimePickerLocale {
 
   /// Thai (TH)
   th,
+
+  /// Lithuaniana (LT)
+  lt,
+
+  /// Dutch (NL)
+  nl,
+
+  /// Haitian Creole (HT)
+  ht,
+
+  /// Swedish (SV)
+  sv,
+
+  /// Czech (CZ)
+  cz,
+
+  /// Polish (PL)
+  pl,
 }
 
 /// Default value of date locale
@@ -125,8 +174,14 @@ const Map<DateTimePickerLocale, _StringsI18n> datePickerI18n = {
   DateTimePickerLocale.tr: const _StringsTr(),
   DateTimePickerLocale.no_nb: const _StringsNoNb(),
   DateTimePickerLocale.no_nn: const _StringsNoNn(),
+  DateTimePickerLocale.nl: const _StringsNl(),
   DateTimePickerLocale.fr: const _StringsFr(),
   DateTimePickerLocale.th: const _StringsTh(),
+  DateTimePickerLocale.lt: const _StringsLt(),
+  DateTimePickerLocale.ht: const _StringsHt(),
+  DateTimePickerLocale.sv: const _StringsSv(),
+  DateTimePickerLocale.cz: const _StringsCz(),
+  DateTimePickerLocale.pl: const _StringsPl(),
 };
 
 class DatePickerI18n {
@@ -134,7 +189,7 @@ class DatePickerI18n {
   static String getLocaleDone(DateTimePickerLocale locale) {
     _StringsI18n i18n = datePickerI18n[locale] ??
         datePickerI18n[DATETIME_PICKER_LOCALE_DEFAULT]!;
-    return i18n.getDoneText() ;
+    return i18n.getDoneText();
   }
 
   /// Get cancel button text

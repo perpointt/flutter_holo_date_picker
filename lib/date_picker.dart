@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'date_picker_theme.dart';
@@ -71,6 +70,27 @@ class DatePicker {
       case 'nn':
         return DateTimePickerLocale.no_nn;
 
+      case 'fr':
+        return DateTimePickerLocale.fr;
+
+      case 'th':
+        return DateTimePickerLocale.th;
+
+      case 'nl':
+        return DateTimePickerLocale.nl;
+
+      case 'ht':
+        return DateTimePickerLocale.ht;
+
+      case 'sv':
+        return DateTimePickerLocale.sv;
+
+      case 'cz':
+        return DateTimePickerLocale.cz;
+
+      case 'pl':
+        return DateTimePickerLocale.pl;
+
       default:
         return DateTimePickerLocale.en_us;
     }
@@ -90,31 +110,33 @@ class DatePicker {
   /// confirmText: [String] text of the dialog's confirm button
   /// cancelText: [String] text of the dialog's  cancel button
   static Future<DateTime?> showSimpleDatePicker(
-      BuildContext context, {
-        DateTime? firstDate,
-        DateTime? lastDate,
-        DateTime? initialDate,
-        String? dateFormat,
-        DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-        DateTimePickerMode pickerMode: DateTimePickerMode.date,
-        Color? backgroundColor,
-        Color? textColor,
-        TextStyle? itemTextStyle,
-        String? titleText,
-        String? confirmText,
-        String? cancelText,
-        bool looping: false,
-        bool reverse: false,
-      }) {
+    BuildContext context, {
+    DateTime? firstDate,
+    DateTime? lastDate,
+    DateTime? initialDate,
+    String? dateFormat,
+    DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
+    DateTimePickerMode pickerMode: DateTimePickerMode.date,
+    Color? backgroundColor,
+    Color? textColor,
+    TextStyle? itemTextStyle,
+    String? titleText,
+    String? confirmText,
+    String? cancelText,
+    bool looping: false,
+    bool reverse: false,
+  }) {
     DateTime? _selectedDate = initialDate;
     final List<Widget> listButtonActions = [
-      TextButton(style: TextButton.styleFrom(primary:textColor),
+      TextButton(
+        style: TextButton.styleFrom(primary: textColor),
         child: Text(confirmText ?? "OK"),
         onPressed: () {
           Navigator.pop(context, _selectedDate);
         },
       ),
-      TextButton(style: TextButton.styleFrom(primary:textColor),
+      TextButton(
+        style: TextButton.styleFrom(primary: textColor),
         child: Text(cancelText ?? "Cancel"),
         onPressed: () {
           Navigator.pop(context);
@@ -160,7 +182,7 @@ class DatePicker {
           locale: locale,
           pickerTheme: DateTimePickerTheme(
             backgroundColor: backgroundColor,
-            itemTextStyle: itemTextStyle?? TextStyle(color: textColor),
+            itemTextStyle: itemTextStyle ?? TextStyle(color: textColor),
           ),
           onChange: ((DateTime date, list) {
             print(date);
@@ -170,7 +192,7 @@ class DatePicker {
         ),
       ),
       actions:
-      reverse ? listButtonActions.reversed.toList() : listButtonActions,
+          reverse ? listButtonActions.reversed.toList() : listButtonActions,
     );
     return showDialog(
         useRootNavigator: false,

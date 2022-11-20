@@ -38,7 +38,7 @@ class MyHomePage extends StatelessWidget {
                 firstDate: DateTime(1960),
                 lastDate: DateTime(2012),
                 dateFormat: "dd-MMMM-yyyy",
-                locale: DateTimePickerLocale.en_us,
+                locale: DateTimePickerLocale.th,
                 looping: true,
               );
 
@@ -72,30 +72,84 @@ class _WidgetPageState extends State<WidgetPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: DatePickerWidget(
-              looping: false, // default is not looping
-              firstDate: DateTime.now(), //DateTime(1960),
-              locale: DateTimePickerLocale.ru,
-              //  lastDate: DateTime(2002, 1, 1),
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            begin: FractionalOffset.topCenter,
+            end: FractionalOffset.bottomCenter,
+            colors: [
+              Colors.grey[900]!,
+              Colors.black,
+            ],
+            stops: const [0.7, 1.0],
+          )),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: DatePickerWidget(
+                    looping: false, // default is not looping
+                    firstDate: DateTime.now(), //DateTime(1960),
+                    //  lastDate: DateTime(2002, 1, 1),
 //              initialDate: DateTime.now(),// DateTime(1994),
-              dateFormat: "dd-MMMM-yyyy",
-              //   "dd-MMMM-yyyy",
-              //     locale: DatePicker.localeFromString('he'),
-              onChange: (DateTime newDate, _) {
-                _selectedDate = newDate;
-                print(_selectedDate);
-              },
-              pickerTheme: DateTimePickerTheme(
-                itemTextStyle: TextStyle(color: Colors.black, fontSize: 19),
-                dividerColor: Colors.red,
-              ),
+                    dateFormat:
+                        // "MM-dd(E)",
+                        "dd/MMMM/yyyy",
+                    locale: DatePicker.localeFromString('th'),
+                    onChange: (DateTime newDate, _) {
+                      setState(() {
+                        _selectedDate = newDate;
+                      });
+                      print(_selectedDate);
+                    },
+                    pickerTheme: DateTimePickerTheme(
+                      backgroundColor: Colors.transparent,
+                      itemTextStyle:
+                          TextStyle(color: Colors.white, fontSize: 19),
+                      dividerColor: Colors.white,
+                    ),
+                  ),
+                ),
+                Text("${_selectedDate ?? ''}"),
+              ],
             ),
           ),
         ),
       ),
     );
+    //var locale = "zh";
+    // return SafeArea(
+    //   child: Scaffold(
+    //     body: Center(
+    //       child: DatePickerWidget(
+    //         locale: //locale == 'zh'
+    //             DateTimePickerLocale.zh_cn
+    //             //  DateTimePickerLocale.en_us
+    //         ,
+    //         lastDate: DateTime.now(),
+    //         // dateFormat: "yyyy : MMM : dd",
+    //         // dateFormat: 'yyyy MMMM dd',
+    //         onChange: (DateTime newDate, _) {
+    //           setState(() {
+    //             var dob = newDate.toString();
+    //             print(dob);
+    //           });
+    //         },
+    //         pickerTheme: DateTimePickerTheme(
+    //           backgroundColor: Colors.transparent,
+    //           dividerColor: const Color(0xffe3e3e3),
+    //           itemTextStyle: TextStyle(
+    //             fontFamily: 'NotoSansTC',
+    //             fontSize: 18,
+    //             fontWeight: FontWeight.w500,
+    //             color: Theme.of(context).primaryColor,
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }

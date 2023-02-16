@@ -1,20 +1,15 @@
-/// Selected value of DatePicker.
-typedef DateValueCallback(DateTime dateTime, List<int> selectedIndex);
+part of 'flutter_holo_date_picker.dart';
 
-/// Pressed cancel callback.
-typedef DateVoidCallback();
-
-/// Default value of minimum datetime.
-const String DATE_PICKER_MIN_DATETIME = "1900-01-01 00:00:00";
+abstract class DatePickerConstants {
+  /// Default value of minimum datetime.
+static const String DATE_PICKER_MIN_DATETIME = "1900-01-01 00:00:00";
 
 /// Default value of maximum datetime.
-const String DATE_PICKER_MAX_DATETIME = "2100-12-31 23:59:59";
+static const String DATE_PICKER_MAX_DATETIME = "2100-12-31 23:59:59";
 
 /// Default value of date format
-const String DATETIME_PICKER_DATE_FORMAT = 'yyyy-MMM-dd';
+static const String DATETIME_PICKER_DATE_FORMAT = 'dd-MMMM-yyyy';
 
 /// Default value of time format
-const String DATETIME_PICKER_TIME_FORMAT = 'HH:mm:ss';
-
-/// Default value of datetime format
-const String DATETIME_PICKER_DATETIME_FORMAT = 'yyyyMMdd HH:mm:ss';
+static const String DATETIME_PICKER_TIME_FORMAT = 'hh:mm';
+}

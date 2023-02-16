@@ -1,32 +1,32 @@
-import 'package:flutter/material.dart';
-
-/// Default value of DatePicker's background color.
-const DATETIME_PICKER_BACKGROUND_COLOR = Colors.white;
-
-/// Default value of whether show title widget or not.
-const DATETIME_PICKER_SHOW_TITLE_DEFAULT = true;
-
-/// Default value of DatePicker's height.
-const double DATETIME_PICKER_HEIGHT = 160.0;
-
-/// Default value of DatePicker's title height.
-const double DATETIME_PICKER_TITLE_HEIGHT = 36.0;
-
-/// Default value of DatePicker's column height.
-const double DATETIME_PICKER_ITEM_HEIGHT = 36.0;
-
-/// Default value of DatePicker's item [TextStyle].
-const TextStyle DATETIME_PICKER_ITEM_TEXT_STYLE =
-    const TextStyle(color: Colors.black, fontSize: 16.0);
-
-const Color DATETIME_PICKER_ITEM_TEXT_COLOR = Colors.black;
-const double DATETIME_PICKER_ITEM_TEXT_SIZE_SMALL = 15;
-const double DATETIME_PICKER_ITEM_TEXT_SIZE_BIG = 17;
+part of 'flutter_holo_date_picker.dart';
 
 /// To support both stable and beta channels until
 /// 'DiagnosticableMixin' is officially deprecated.
 class DateTimePickerTheme {
-  final cancelDefault = const Text('OK');
+  /// Default value of DatePicker's background color.
+  static const _DATETIME_PICKER_BACKGROUND_COLOR = Colors.white;
+
+  /// Default value of whether show title widget or not.
+  static const _DATETIME_PICKER_SHOW_TITLE_DEFAULT = true;
+
+  /// Default value of DatePicker's height.
+  static const double DATETIME_PICKER_HEIGHT = 160.0;
+
+  /// Default value of DatePicker's title height.
+  static const double DATETIME_PICKER_TITLE_HEIGHT = 36.0;
+
+  /// Default value of DatePicker's column height.
+  static const double DATETIME_PICKER_ITEM_HEIGHT = 36.0;
+
+  /// Default value of DatePicker's item [TextStyle].
+  static const TextStyle DATETIME_PICKER_ITEM_TEXT_STYLE = const TextStyle(
+    color: Colors.black,
+    fontSize: 16.0,
+  );
+
+  static const Color DATETIME_PICKER_ITEM_TEXT_COLOR = Colors.black;
+  static const double DATETIME_PICKER_ITEM_TEXT_SIZE_SMALL = 15;
+  static const double DATETIME_PICKER_ITEM_TEXT_SIZE_BIG = 17;
 
   /// DateTimePicker theme.
   ///
@@ -42,17 +42,17 @@ class DateTimePickerTheme {
   /// [itemHeight] The value of DatePicker's column height.
   /// [itemTextStyle] The value of DatePicker's column [TextStyle].
   const DateTimePickerTheme({
-    this.backgroundColor: DATETIME_PICKER_BACKGROUND_COLOR,
+    this.backgroundColor = _DATETIME_PICKER_BACKGROUND_COLOR,
     this.cancelTextStyle,
     this.confirmTextStyle,
     this.cancel,
     this.confirm,
     this.title,
-    this.showTitle: DATETIME_PICKER_SHOW_TITLE_DEFAULT,
-    this.pickerHeight: DATETIME_PICKER_HEIGHT,
-    this.titleHeight: DATETIME_PICKER_TITLE_HEIGHT,
-    this.itemHeight: DATETIME_PICKER_ITEM_HEIGHT,
-    this.itemTextStyle: DATETIME_PICKER_ITEM_TEXT_STYLE,
+    this.showTitle = _DATETIME_PICKER_SHOW_TITLE_DEFAULT,
+    this.pickerHeight = DATETIME_PICKER_HEIGHT,
+    this.titleHeight = DATETIME_PICKER_TITLE_HEIGHT,
+    this.itemHeight = DATETIME_PICKER_ITEM_HEIGHT,
+    this.itemTextStyle = DATETIME_PICKER_ITEM_TEXT_STYLE,
     this.dividerColor,
   });
 

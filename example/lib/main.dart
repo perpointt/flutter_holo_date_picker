@@ -4,16 +4,12 @@ import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'example',
-      theme: ThemeData(primarySwatch: Colors.blue),
-//      home: DateTesting(),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Holo Datepicker Example'),
+          title: Text('Datepicker Example'),
         ),
         body: MyHomePage(),
       ),
@@ -22,134 +18,56 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  DateTime _date = DateTime.now();
+
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          ElevatedButton(
-            child: Text("open picker dialog"),
-            onPressed: () async {
-              var datePicked = await DatePicker.showSimpleDatePicker(
-                context,
-                initialDate: DateTime(1994),
-                firstDate: DateTime(1960),
-                lastDate: DateTime(2012),
-                dateFormat: "dd-MMMM-yyyy",
-                locale: DateTimePickerLocale.th,
-                looping: true,
-              );
-
-              final snackBar =
-                  SnackBar(content: Text("Date Picked $datePicked"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        children: [
+          DatePickerWidget(
+            dateFormat: DatePickerConstants.DATETIME_PICKER_DATE_FORMAT,
+            locale: DateTimePickerLocale.ru,
+            onChanged: (value) {
+              setState(() {
+                _date = DateTime(
+                  value.year,
+                  value.month,
+                  value.day,
+                  _date.hour,
+                  _date.minute,
+                );
+              });
             },
+            initialDate: _date,
           ),
-          ElevatedButton(
-            child: Text("Show picker widget"),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => WidgetPage()));
+          DatePickerWidget(
+            dateFormat: DatePickerConstants.DATETIME_PICKER_TIME_FORMAT,
+            locale: DateTimePickerLocale.ru,
+            onChanged: (value) {
+              setState(() {
+                _date = DateTime(
+                  _date.year,
+                  _date.month,
+                  _date.day,
+                  value.hour,
+                  value.minute,
+                );
+              });
             },
-          )
+            initialDate: _date,
+          ),
+          const SizedBox(height: 16),
+          Text('$_date'),
         ],
       ),
     );
-  }
-}
-
-class WidgetPage extends StatefulWidget {
-  @override
-  _WidgetPageState createState() => _WidgetPageState();
-}
-
-class _WidgetPageState extends State<WidgetPage> {
-  DateTime? _selectedDate;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-            begin: FractionalOffset.topCenter,
-            end: FractionalOffset.bottomCenter,
-            colors: [
-              Colors.grey[900]!,
-              Colors.black,
-            ],
-            stops: const [0.7, 1.0],
-          )),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: DatePickerWidget(
-                    looping: false, // default is not looping
-                    firstDate: DateTime.now(), //DateTime(1960),
-                    //  lastDate: DateTime(2002, 1, 1),
-//              initialDate: DateTime.now(),// DateTime(1994),
-                    dateFormat:
-                        // "MM-dd(E)",
-                        "dd/MMMM/yyyy",
-                    locale: DatePicker.localeFromString('th'),
-                    onChange: (DateTime newDate, _) {
-                      setState(() {
-                        _selectedDate = newDate;
-                      });
-                      print(_selectedDate);
-                    },
-                    pickerTheme: DateTimePickerTheme(
-                      backgroundColor: Colors.transparent,
-                      itemTextStyle:
-                          TextStyle(color: Colors.white, fontSize: 19),
-                      dividerColor: Colors.white,
-                    ),
-                  ),
-                ),
-                Text("${_selectedDate ?? ''}"),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-    //var locale = "zh";
-    // return SafeArea(
-    //   child: Scaffold(
-    //     body: Center(
-    //       child: DatePickerWidget(
-    //         locale: //locale == 'zh'
-    //             DateTimePickerLocale.zh_cn
-    //             //  DateTimePickerLocale.en_us
-    //         ,
-    //         lastDate: DateTime.now(),
-    //         // dateFormat: "yyyy : MMM : dd",
-    //         // dateFormat: 'yyyy MMMM dd',
-    //         onChange: (DateTime newDate, _) {
-    //           setState(() {
-    //             var dob = newDate.toString();
-    //             print(dob);
-    //           });
-    //         },
-    //         pickerTheme: DateTimePickerTheme(
-    //           backgroundColor: Colors.transparent,
-    //           dividerColor: const Color(0xffe3e3e3),
-    //           itemTextStyle: TextStyle(
-    //             fontFamily: 'NotoSansTC',
-    //             fontSize: 18,
-    //             fontWeight: FontWeight.w500,
-    //             color: Theme.of(context).primaryColor,
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

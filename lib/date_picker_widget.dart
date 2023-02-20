@@ -504,7 +504,7 @@ class _DividerWidget extends StatelessWidget {
               child: Divider(
                 color: color,
                 height: 1,
-                thickness: 2,
+                thickness: pickerTheme.dividerThickness,
               ),
             ),
             SizedBox(width: MediaQuery.of(context).size.width * 0.02),
